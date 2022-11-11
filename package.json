@@ -1,0 +1,46 @@
+{
+    "name": "frontend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "proxy": "http://localhost:4000/api",
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "fm": "prettier --single-quote --trailing-comma all --tab-width 4 --write src/**/*.{js,json,jsx,css,scss,ts,tsx}",
+        "format": "lint-staged",
+        "prepare": "husky install"
+    },
+    "lint-staged": {
+        "src/**/*.{js,json,jsx,css,scss,ts,tsx}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@reduxjs/toolkit": "^1.9.0",
+        "axios": "^1.1.3",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-redux": "^8.0.5",
+        "react-scripts": "^5.0.1",
+        "redux-logger": "^3.0.6"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "husky": "^8.0.2",
+        "lint-staged": "^13.0.3",
+        "prettier": "^2.7.1"
+    }
+}
