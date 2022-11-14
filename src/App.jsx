@@ -6,6 +6,9 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Netflix from './pages/Netflix';
 import PageNotFound from './pages/PageNotFound';
+import Player from './pages/Player';
+import Movies from './pages/Movies';
+import TVShows from './pages/TVShows';
 const App = () => {
     const dispatch = useDispatch();
     // useEffect(() => {
@@ -19,6 +22,9 @@ const App = () => {
             <Routes>
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/signup" element={<Signup />} />
+                <Route exact path="/player" element={<Player />} />
+                <Route exact path="/movies" element={<Movies />} />
+                <Route exact path="/tv" element={<TVShows />} />
                 <Route exact path="/" element={<Netflix />} />
                 <Route exact path="*" element={<PageNotFound />} />
             </Routes>

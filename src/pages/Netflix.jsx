@@ -5,12 +5,27 @@ import MovieLogo from '../assets/homeTitle.webp';
 import { FaPlay } from 'react-icons/fa';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMovies, getGenres } from '../store/actions/netflixActions';
+import Slider from '../components/Slider';
+
 const Netflix = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [isScrolled, setIsScrolled] = React.useState(false);
+    const { genresLoaded, movies } = useSelector((state) => state.netflix);
+    // console.log(genresLoaded);
     window.onscroll = () => {
         setIsScrolled(window.pageYOffset === 0 ? false : true);
         return () => (window.onscroll = null);
     };
+    React.useEffect(() => {
+        dispatch(getGenres());
+    }, []);
+    React.useEffect(() => {
+        if (genresLoaded) dispatch(fetchMovies({ type: 'all' }));
+    }, [genresLoaded]);
     return (
         <Container>
             <Navbar isScrolled={isScrolled} />
@@ -25,7 +40,10 @@ const Netflix = () => {
                         <img src={MovieLogo} alt="Movie Logo" />
                     </div>
                     <div className="buttons flex">
-                        <button className="flex j-center a-center">
+                        <button
+                            className="flex j-center a-center"
+                            onClick={() => navigate('/player')}
+                        >
                             <FaPlay /> Play
                         </button>
                         <button className="flex j-center a-center">
@@ -34,6 +52,7 @@ const Netflix = () => {
                     </div>
                 </div>
             </div>
+            <Slider movies={movies} />
         </Container>
     );
 };
